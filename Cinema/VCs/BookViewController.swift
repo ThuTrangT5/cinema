@@ -18,6 +18,8 @@ class BookViewController: UIViewController {
         
         if let webView = self.view.viewWithTag(1) as? UIWebView,
             let url = URL(string: self.bookUrl) {
+            APIManagement.shared.showWaiting()
+            
             let request = URLRequest(url: url)
             webView.loadRequest(request)
             webView.delegate = self
@@ -31,7 +33,7 @@ class BookViewController: UIViewController {
 extension BookViewController: UIWebViewDelegate {
     
     func webViewDidStartLoad(_ webView: UIWebView) {
-        APIManagement.shared.showWaiting()
+        
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {

@@ -39,6 +39,7 @@ class DetailViewController: UIViewController {
         
         if let title = self.view.viewWithTag(2) as? UILabel {
             title.text = self.movie["title"].string
+            title.backgroundColor = UIColor.black.withAlphaComponent(0.55)
         }
         
         if let synopsis = self.view.viewWithTag(3) as? UILabel {

@@ -14,8 +14,17 @@ class ListViewController: UITableViewController {
     var movies: [JSON] = []
     var currentPage: Int = 0
     
+    var refresh: UIRefreshControl? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // UI for all Navigation Bar & Buttons
+        self.navigationController?.navigationBar.barTintColor = TINT_COLOR
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
+        self.setupPulldownToRefresh()
         
         self.getMovies(page: 1)
     }
@@ -26,11 +35,28 @@ class ListViewController: UITableViewController {
         APIManagement.shared.getMoviesList(page: page) { (res) in
             if page == 1 {
                 self.movies.removeAll()
+                self.refresh?.endRefreshing()
             }
             
             self.currentPage = page
             self.movies.append(contentsOf: res["results"].arrayValue)
             self.tableView.reloadData()
+        }
+    }
+    
+    func setupPulldownToRefresh() {
+        self.refresh = UIRefreshControl()
+        refresh?.tintColor = TINT_COLOR
+        refresh?.addTarget(self, action: #selector(self.refreshHandler), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refresh!)
+    }
+    
+    func refreshHandler() {
+        self.movies.removeAll()
+        self.tableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.getMovies(page: 1)
         }
     }
     
@@ -46,10 +72,13 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = (indexPath.row % 2 == 0) ? "cellA" : "cellB"
+        //        let identifier = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         let item = self.movies[indexPath.row]
         
         if let imageView = cell.viewWithTag(1) as? UIImageViewLoader {
+            imageView.layer.masksToBounds = true
+            
             let posterPath = item["poster_path"].stringValue
             imageView.loadPosterImage(name: posterPath)
         }
@@ -58,8 +87,30 @@ class ListViewController: UITableViewController {
             title.text = item["title"].string
         }
         
-        if let popularity = cell.viewWithTag(3) as? UILabel {
-            popularity.text = "Popularity: \(item["popularity"].floatValue)"
+        //        if let popularity = cell.viewWithTag(3) as? UILabel {
+        //            popularity.text = "Popularity: \(item["popularity"].floatValue)"
+        //        }
+        
+        
+        let popularity = item["popularity"].floatValue
+        let fullValue = Int(popularity) + 10
+        for tag in 11...15 {
+            if let star = cell.viewWithTag(tag) as? UIImageView {
+                star.tintColor = TINT_COLOR
+                
+                if tag <= fullValue {
+                    star.image = #imageLiteral(resourceName: "start_full").withRenderingMode(.alwaysTemplate)
+                    
+                } else if tag > fullValue {
+                    star.image = #imageLiteral(resourceName: "start_empty").withRenderingMode(.alwaysTemplate)
+                    
+                    if tag == fullValue + 1 {
+                        if (10 + popularity - Float(fullValue)) >= 0.5 {
+                            star.image = #imageLiteral(resourceName: "start_half").withRenderingMode(.alwaysTemplate)
+                        }
+                    }
+                }
+            }
         }
         
         // next page

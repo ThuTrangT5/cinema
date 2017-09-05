@@ -10,6 +10,9 @@ import Alamofire
 import SwiftyJSON
 import DGActivityIndicatorView
 
+let TINT_COLOR: UIColor = UIColor(red: 242.0/255.0, green: 98.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+//let TINT_COLOR: UIColor = UIColor(red: 205.0/255.0, green: 0.0/255.0, blue: 87.0/255.0, alpha: 1.0)
+
 class APIManagement: NSObject {
     
     static var shared: APIManagement = APIManagement()
@@ -20,7 +23,6 @@ class APIManagement: NSObject {
     // MARK:- Supports
     
     static var activityIndicatorView: DGActivityIndicatorView? = nil
-    private let TINT_COLOR = UIColor.red
     
     func showWaiting() {
         self.closeWaiting()
