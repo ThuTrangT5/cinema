@@ -17,6 +17,7 @@
 		6A588F911F5EA0D30042AD68 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A588F8E1F5EA0D30042AD68 /* DetailViewController.swift */; };
 		6A588F921F5EA0D30042AD68 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A588F8F1F5EA0D30042AD68 /* ListViewController.swift */; };
 		6A588F941F5EAC090042AD68 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A588F931F5EAC090042AD68 /* ImageLoader.swift */; };
+		6AC228A01F5EC0CD00546D21 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC2289F1F5EC0CD00546D21 /* BookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		6A588F8E1F5EA0D30042AD68 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6A588F8F1F5EA0D30042AD68 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		6A588F931F5EAC090042AD68 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		6AC2289F1F5EC0CD00546D21 /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		866F7AE3D50F3125CAA642F1 /* Pods-Cinema.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinema.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cinema/Pods-Cinema.release.xcconfig"; sourceTree = "<group>"; };
 		A0029EBECA2C5D99C4B4A900 /* Pods_Cinema.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cinema.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 			children = (
 				6A588F8F1F5EA0D30042AD68 /* ListViewController.swift */,
 				6A588F8E1F5EA0D30042AD68 /* DetailViewController.swift */,
+				6AC2289F1F5EC0CD00546D21 /* BookViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				6A588F901F5EA0D30042AD68 /* APIManagement.swift in Sources */,
 				6A588F621F5E979A0042AD68 /* AppDelegate.swift in Sources */,
 				6A588F941F5EAC090042AD68 /* ImageLoader.swift in Sources */,
+				6AC228A01F5EC0CD00546D21 /* BookViewController.swift in Sources */,
 				6A588F921F5EA0D30042AD68 /* ListViewController.swift in Sources */,
 				6A588F911F5EA0D30042AD68 /* DetailViewController.swift in Sources */,
 			);

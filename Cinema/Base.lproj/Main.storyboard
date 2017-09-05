@@ -199,12 +199,47 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="rtB-Xk-AuF">
-                        <barButtonItem key="rightBarButtonItem" title="Book" id="txC-iq-Snc"/>
+                        <barButtonItem key="rightBarButtonItem" title="Book" id="txC-iq-Snc">
+                            <connections>
+                                <segue destination="lZE-91-PbT" kind="push" id="3hx-1T-Sq0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRo-OV-J8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1552.8" y="71.514242878560722"/>
+        </scene>
+        <!--Book a movie-->
+        <scene sceneID="DVi-2S-WDY">
+            <objects>
+                <viewController id="lZE-91-PbT" customClass="BookViewController" customModule="Cinema" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2XT-HK-rb2"/>
+                        <viewControllerLayoutGuide type="bottom" id="euw-Xj-aig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hnh-F4-cID">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EwZ-tZ-bj1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="euw-Xj-aig" firstAttribute="top" secondItem="EwZ-tZ-bj1" secondAttribute="bottom" id="1p0-91-NUC"/>
+                            <constraint firstAttribute="trailing" secondItem="EwZ-tZ-bj1" secondAttribute="trailing" id="95B-NA-WCd"/>
+                            <constraint firstItem="EwZ-tZ-bj1" firstAttribute="top" secondItem="Hnh-F4-cID" secondAttribute="top" id="aa9-Ij-S80"/>
+                            <constraint firstItem="EwZ-tZ-bj1" firstAttribute="leading" secondItem="Hnh-F4-cID" secondAttribute="leading" id="cor-6f-9O3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Book a movie" id="FHz-kX-1kl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESs-EZ-hxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2318" y="72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kZ6-sN-Eyu">
