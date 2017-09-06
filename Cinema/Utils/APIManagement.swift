@@ -52,7 +52,7 @@ class APIManagement: NSObject {
     }
     
     // MARK:- Request
-    private func sendRequest(method: HTTPMethod, urlString: String , parameters: Parameters? = nil, callback:((JSON)-> Void)?){
+     func sendRequest(method: HTTPMethod, urlString: String , parameters: Parameters? = nil, callback:((JSON)-> Void)?){
         
         self.showWaiting()
         let url = API_BASE + urlString + "?api_key=" + API_KEY

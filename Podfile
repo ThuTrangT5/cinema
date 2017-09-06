@@ -18,3 +18,11 @@ target ‘Cinema’ do
     pod 'DGActivityIndicatorView'
 
 end
+
+target ‘CinemaTests’ do
+    
+    pod 'Alamofire', '~> 4.4'
+    pod 'SwiftyJSON'
+    pod 'DGActivityIndicatorView'
+    
+end

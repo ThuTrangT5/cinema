@@ -30,14 +30,14 @@ class DetailViewController: UIViewController {
     
     // MARK:- Data
     
-    func getMovieDetail() {
+    func getMovieDetail(callback: (()->Void)? = nil) {
         APIManagement.shared.getMovieDetail(movieId: self.movieId) { (res) in
             self.movie = res
-            self.bindData()
+            self.bindData(callback: callback)
         }
     }
     
-    func bindData() {
+    func bindData(callback: (()->Void)? = nil) {
         if let poster = self.view.viewWithTag(1) as? UIImageViewLoader {
             poster.layer.masksToBounds = true
             
@@ -114,5 +114,7 @@ class DetailViewController: UIViewController {
             language.text = allLanguages
             label.textColor = TINT_COLOR
         }
+        
+        callback?()
     }
 }

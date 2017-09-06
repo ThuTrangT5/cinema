@@ -15,6 +15,7 @@ class ListViewController: UITableViewController {
     var currentPage: Int = 0
     
     var refresh: UIRefreshControl? = nil
+    let gradient = CAGradientLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class ListViewController: UITableViewController {
     
     // MARK:- Data
     
-    func getMovies(page: Int) {
+    func getMovies(page: Int, callback: (()->Void)? = nil) {
         APIManagement.shared.getMoviesList(page: page) { (res) in
             if page == 1 {
                 self.movies.removeAll()
@@ -41,6 +42,8 @@ class ListViewController: UITableViewController {
             self.currentPage = page
             self.movies.append(contentsOf: res["results"].arrayValue)
             self.tableView.reloadData()
+            
+            callback?()
         }
     }
     
@@ -72,8 +75,10 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = (indexPath.row % 2 == 0) ? "cellA" : "cellB"
-        //        let identifier = "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.backgroundColor = UIColor.clear
+        
         let item = self.movies[indexPath.row]
         
         if let imageView = cell.viewWithTag(1) as? UIImageViewLoader {
@@ -81,6 +86,12 @@ class ListViewController: UITableViewController {
             
             let posterPath = item["poster_path"].stringValue
             imageView.loadPosterImage(name: posterPath)
+            
+            imageView.superview?.layer.cornerRadius = 10
+            imageView.superview?.layer.masksToBounds = true
+            imageView.superview?.backgroundColor = UIColor.clear
+            imageView.superview?.layer.borderColor = TINT_COLOR.cgColor
+            imageView.superview?.layer.borderWidth = 1.0
         }
         
         if let title = cell.viewWithTag(2) as? UILabel {
