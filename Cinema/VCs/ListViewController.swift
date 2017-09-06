@@ -87,33 +87,22 @@ class ListViewController: UITableViewController {
             title.text = item["title"].string
         }
         
-        //        if let popularity = cell.viewWithTag(3) as? UILabel {
-        //            popularity.text = "Popularity: \(item["popularity"].floatValue)"
-        //        }
-        
-        
-        let popularity = item["popularity"].floatValue
-        let fullValue = Int(popularity) + 10
-        for tag in 11...15 {
-            if let star = cell.viewWithTag(tag) as? UIImageView {
-                star.tintColor = TINT_COLOR
-                
-                if tag <= fullValue {
-                    star.image = #imageLiteral(resourceName: "start_full").withRenderingMode(.alwaysTemplate)
-                    
-                } else if tag > fullValue {
-                    star.image = #imageLiteral(resourceName: "start_empty").withRenderingMode(.alwaysTemplate)
-                    
-                    if tag == fullValue + 1 {
-                        if (10 + popularity - Float(fullValue)) >= 0.5 {
-                            star.image = #imageLiteral(resourceName: "start_half").withRenderingMode(.alwaysTemplate)
-                        }
-                    }
-                }
-            }
+        if let popularity = cell.viewWithTag(3) as? UILabel {
+            popularity.text = String(format: "%.1f", item["popularity"].floatValue)
+            popularity.textColor = UIColor.white
+            
+            // ui for view which content popularity index & star
+            popularity.superview?.backgroundColor = TINT_COLOR
+            popularity.superview?.layer.cornerRadius = 15.0
+            popularity.superview?.layer.masksToBounds = true
+            
+        }
+        if let star = cell.viewWithTag(4) as? UIImageView {
+            star.tintColor = UIColor.white
+            star.image = #imageLiteral(resourceName: "start_full").withRenderingMode(.alwaysTemplate)
         }
         
-        // next page
+        // checkk to load data for next page
         let itemsPerPage: Int = 20 // info from api response
         if (indexPath.row == self.movies.count - 1) // check last item of list
             && (itemsPerPage * self.currentPage == self.movies.count) {// check all items were loaded or not
